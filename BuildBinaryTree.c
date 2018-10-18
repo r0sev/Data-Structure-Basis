@@ -6,11 +6,11 @@ typedef struct BinTreeNode{
 	ElemType data;
 	struct BinTreeNode *lchild;
 	struct BinTreeNode *rchild;
-}BinTNode, *BiTree;
+}BiTNode, *BiTree;
 
 //创建一棵二叉树，约定用户遵照'前序遍历'的方式输入数据
 //叶子结点约定且必须用空格代替如 AB D  CE   #
-CreateBinTree(BiTree *T)
+void CreateBiTree(BiTree *T)
 {
 	ElemType c;
 
@@ -20,18 +20,18 @@ CreateBinTree(BiTree *T)
 	}else{
 		*T = (BiTNode *)malloc(sizeof(BiTNode));
 		(*T)->data = c;
-		CreateBinTree(&(*T)->lchild);
-		CreateBinTree(&(*T)->rchild);
+		CreateBiTree(&(*T)->lchild);
+		CreateBiTree(&(*T)->rchild);
 	}
 }
 
 //访问二叉树结点的具体操作
-visit(char c, int level){
+void visit(char c, int level){
 	printf("%c 位于第 %d层\n", c, level);
 }
 
 // 遍历二叉树 并打印结点所在层数
-PreOrderTraverse(BiTree T, int level){
+void PreOrderTraverse(BiTree T, int level){
 
 	if (T)
 	{
