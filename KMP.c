@@ -55,16 +55,19 @@ int KMP(char text[], int tlen, char pattern[], int plen, int next[]){
         }
     }
     /* 返回符合人类习惯的'位置' 而不是数组下标(实际上是匹配成功位置的下标+1) */
-    return i-j+1;
+    return i-j+1;   //53 - -1 + 1 == 55 若不匹配
 }
 
 int main(int argc, char *argv[]) {
 
-    //char text[] = "BBBBABABCABCDBACBBACBADABC";        //location : 7
-    //char pattern[] = "ABCABCDBAC";
+    char text[] = "ABABCABABCABABCABCDBACABABCDBBACBADABC";        //location : 12
+    char pattern[] = "ABCABCDBAC";
     
-    char text[] = "Hello, I Think LB is a nice girl.abcabcabcabcd You guys should love him!";
-    char pattern[] = "abcd";                            //location : 43
+//    char text[] = "Hello, I Think LB is a nice boy.abcabcabcabcd You should love him!";
+//    char pattern[] = "abcabcabcd";                            //location : 36
+
+//    char text[] = "Hello, I Think LB is a nice boy. You should love him!";
+//    char pattern[] = "abcabcabcd";                            //if failed ,location : 55
     
     int next[10];
     int flocation = 0;
@@ -80,9 +83,9 @@ int main(int argc, char *argv[]) {
 //
     get_next(pattern, next, plen);
     
-//    for(int i = 0; i < plen; i++)
-//        printf("next[%d] = %d\n", i, next[i]);
-//    printf("\n");
+    for(int i = 0; i < plen; i++)
+        printf("next[%d] = %d\n", i, next[i]);
+    printf("\n");
     
     printf("\nStart Matching Using KMP...\n");
     flocation = KMP(text, tlen, pattern, plen, next);
